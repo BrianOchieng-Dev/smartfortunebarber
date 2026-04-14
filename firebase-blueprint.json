@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and role information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "customer"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "aiUsageCount": { "type": "number" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Offer": {
+      "title": "Offer",
+      "description": "Special offers and promotions",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "discount": { "type": "string" },
+        "expiryDate": { "type": "string", "format": "date-time" },
+        "active": { "type": "boolean" },
+        "imageUrl": { "type": "string" }
+      },
+      "required": ["title", "active"]
+    },
+    "GalleryImage": {
+      "title": "GalleryImage",
+      "description": "Hairstyle gallery images",
+      "type": "object",
+      "properties": {
+        "imageUrl": { "type": "string" },
+        "category": { "type": "string" },
+        "validated": { "type": "boolean" },
+        "uploadedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["imageUrl", "validated"]
+    },
+    "AIRequest": {
+      "title": "AIRequest",
+      "description": "History of AI hairstyle predictions",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "inputImageUrl": { "type": "string" },
+        "resultImageUrl": { "type": "string" },
+        "hairstyleType": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "inputImageUrl", "createdAt"]
+    },
+    "SiteContent": {
+      "title": "SiteContent",
+      "description": "Dynamic content for the website",
+      "type": "object",
+      "properties": {
+        "slogan": { "type": "string" },
+        "headline": { "type": "string" },
+        "aboutText": { "type": "string" },
+        "services": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/offers/{offerId}": {
+      "schema": "Offer",
+      "description": "Promotional offers"
+    },
+    "/gallery/{imageId}": {
+      "schema": "GalleryImage",
+      "description": "Hairstyle gallery"
+    },
+    "/ai_requests/{requestId}": {
+      "schema": "AIRequest",
+      "description": "AI hairstyle history"
+    },
+    "/site_content/{contentId}": {
+      "schema": "SiteContent",
+      "description": "Website headlines and slogans"
+    }
+  }
+}
