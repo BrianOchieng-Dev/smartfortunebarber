@@ -1,0 +1,6 @@
+{
+  "name": "Fortune Barber Shop",
+  "description": "A premium barber shop platform featuring AI hairstyle previews, community engagement, and professional grooming services in Kakamega.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}
